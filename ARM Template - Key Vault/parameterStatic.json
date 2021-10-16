@@ -1,0 +1,20 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "adminUsername": {
+          "value": "brunoagueda"
+        },
+        "adminPassword": {
+          "reference": {
+            "keyVault": {
+            "id": "/subscriptions/bac07c89-b922-4896-882f-359d1cfd5058/resourceGroups/classdemo/providers/Microsoft.KeyVault/vaults/az400keyvault"
+            },
+            "secretName": "Pwd"
+          }
+        },
+        "dnsLabelPrefix": {
+			"value": "staticvm123456"
+		}
+      }
+  }

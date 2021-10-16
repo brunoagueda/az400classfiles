@@ -1,0 +1,13 @@
+// Check AZ Subscription
+az account show
+Get-AzSubscription
+
+// Show all Subscription
+// Ex: <microsoft_account_email> = live.com#admin@hotmail.com
+az account list --query "[?user.name=='live.com#brunoagueda@gmail.com'].{Name:name, ID:id, Default:isDefault}" --output Table
+
+// Set Subscription
+az account set --subscription "<subscription_id_or_subscription_name>"
+az account set --subscription "Azure Pass – Sponsorship"
+az account set --subscription "Assinatura do Visual Studio Enterprise"
+Select-AzSubscription -SubscriptionName "Azure Pass – Sponsorship"

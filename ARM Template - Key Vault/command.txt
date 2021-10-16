@@ -1,0 +1,5 @@
+#Static Implementatiom
+az deployment group create --resource-group az400demo --template-file mainStatic.json --parameters parameterStatic.json
+
+#Dynamic Implementation
+az deployment group create --resource-group az400demo --template-file mainDynamic.json

@@ -1,0 +1,19 @@
+$config = @{
+
+  "fileUris" = (,"https://scriptstoragedemo.blob.core.windows.net/files/script.ps1");
+
+  "commandToExecute" = "powershell -ExecutionPolicy Unrestricted -File script.ps1"
+
+}
+
+
+
+$set = Get-AzVmss -ResourceGroupName "classdemo" -VMScaleSetName "demoset"
+
+
+
+$set = Add-AzVmssExtension -VirtualMachineScaleSet $set -Name "customScript" -Publisher "Microsoft.Compute" -Type "CustomScriptExtension" -TypeHandlerVersion 1.9 -Setting $config
+
+
+
+Update-AzVmss -ResourceGroupName "classdemo" -Name "demoset" -VirtualMachineScaleSet $set

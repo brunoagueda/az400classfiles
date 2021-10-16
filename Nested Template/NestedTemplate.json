@@ -1,0 +1,58 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "innerResourceGroup": {
+      "type": "string"
+    },
+    "innerSubscriptionID": {
+      "type": "string",
+      "defaultValue": ""
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2019-06-01",
+      "name": "maintemplatestorage",
+      "location": "East US",
+      "sku":{
+        "name": "Standard_LRS"
+      },
+      "kind": "Storage",
+      "properties": {
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "name": "nestedTemplate",
+      "resourceGroup": "[parameters('innerResourceGroup')]",
+      "subscriptionId": "[parameters('innerSubscriptionID')]",
+      "properties": {
+      "mode": "Incremental",
+      "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "parameters": {},
+          "variables": {},
+          "resources": [
+          {
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2019-06-01",
+            "name": "nestedtemplatestorage",
+            "location": "Central US",
+            "sku":{
+              "name": "Standard_LRS"
+            },
+            "kind": "Storage",
+            "properties": {
+            }
+          }
+          ]
+      },
+      "parameters": {}
+      }
+    }
+  ]
+}

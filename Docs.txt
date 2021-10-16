@@ -1,0 +1,20 @@
+User1
+User2
+Senha: Bruno@#1234567
+
+VM
+Name: self-agent
+User: brunoagueda
+Senha: Bruno@#1234567
+
+Name: jenkins-server
+User: brunoagueda
+Senha: Bruno@#1234567
+
+Jenkins admin
+User: admin
+Senha: Bruno@#1234567
+
+Name: demovm
+User: brunoagueda
+Senha: Bruno@#1234567

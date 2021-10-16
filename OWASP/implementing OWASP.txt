@@ -1,0 +1,47 @@
+// task for creating the resource group
+az group create -l brazilsouth -n owasp_grp
+
+// task for creating the storage account
+az storage account create -g owasp_grp -n owaspstoreaz400 -l brazilsouth --sku Standard_LRS
+
+az storage share create -n security --account-name owaspstoreaz400
+
+// task for creating the Azure container instance
+az storage account keys list -g owasp_grp --account-name owaspstoreaz400 --query "[0].value" --output tsv > temp.txt
+
+$content = Get-Content temp.txt -First 1
+
+$key = '"{0}"' -f $content
+ 
+echo "https://az400webapp.azurewebsites.net"> url.txt
+
+$url = Get-Content url.txt -First 1
+
+$completeurl = '"{0}"' -f $url
+
+ 
+$ZAP_COMMAND="/zap/zap-baseline.py -t $completeurl -x OWASP-ZAP-Report.xml"
+ 
+az container create -g owasp_grp -n owasp --image owasp/zap2docker-stable --ip-address public --ports 8080 --azure-file-volume-account-name owaspstoreaz400 --azure-file-volume-account-key $key --azure-file-volume-share-name security --azure-file-volume-mount-path /zap/wrk/ --command-line $ZAP_COMMAND
+
+// task for downloading the report
+az storage account keys list -g owasp_grp --account-name owaspstoreaz400 --query "[0].value" --output tsv > temp.txt
+
+$content = Get-Content temp.txt -First 1
+
+$key = '"{0}"' -f $content
+
+do{
+    $file = az storage file list --share-name security --account-name owaspstoreaz400 --account-key $key
+}
+while ($file -eq $null)
+
+az storage file download --account-name owaspstoreaz400 --account-key $key -s security -p OWASP-ZAP-Report.xml --dest %SYSTEM_DEFAULTWORKINGDIRECTORY%\OWASP-ZAP-Report.xml
+
+// powershell task for converting the test report
+$XslPath = "$($Env:SYSTEM_DEFAULTWORKINGDIRECTORY)\_owasp\drop\s\owasp\OWASPToNUnit3.xslt"
+$XmlInputPath = "$($Env:SYSTEM_DEFAULTWORKINGDIRECTORY)\OWASP-ZAP-Report.xml"
+$XmlOutputPath = "$($Env:SYSTEM_DEFAULTWORKINGDIRECTORY)\Converted-OWASP-ZAP-Report.xml"
+$XslTransform = New-Object System.Xml.Xsl.XslCompiledTransform
+$XslTransform.Load($XslPath)
+$XslTransform.Transform($XmlInputPath, $XmlOutputPath)

@@ -1,0 +1,70 @@
+Configuration 1
+
+pool:
+  vmImage: 'ubuntu-latest'
+ 
+steps:
+- bash: echo "Our First Pipeline"
+
+
+Configuration 2
+
+pool:
+  vmImage: 'ubuntu-latest'
+ 
+jobs:
+- job: Firstjob
+  timeoutInMinutes: 10
+  steps:
+  - bash: echo "The First job"
+ 
+- job: Secondjob
+  steps:
+  - bash: echo "Our Second Pipeline"
+  
+  
+Self-Hosted Agent
+pool:
+  name: 'Default'
+  vmImage: 'self-hosted'
+  
+WhiteSource Bolt
+- task: WhiteSource Bolt@20
+
+Unit Test
+- task: DotNetCoreCLI@2
+  inputs:
+    command: test
+    projects: '**/*Test/*.csproj'
+    arguments: '--configuration $(buildConfiguration)'
+	
+Code Coverage
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet test'
+  inputs:
+    command: 'test'
+    projects: '**/*Test.csproj'
+    arguments: '/p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=./MyCoverage/'
+    publishTestResults: true
+ 
+- task: PublishCodeCoverageResults@1
+  displayName: 'Publish Code Coverage Results'
+  inputs:
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: '$(Build.SourcesDirectory)/**/MyCoverage/coverage.cobertura.xml'
+    failIfCoverageEmpty: true
+	
+
+Sonar Cloud
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'sonar-connection'
+    organization: 'app-org'
+    scannerMode: 'MSBuild'
+    projectKey: 'app-org_app-project'
+    projectName: 'app-project'
+
+- task: SonarCloudAnalyze@1
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'

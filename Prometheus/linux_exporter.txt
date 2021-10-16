@@ -1,0 +1,17 @@
+// Download the exporter
+
+wget https://github.com/prometheus/node_exporter/releases/download/v1.0.1/node_exporter-1.0.1.linux-amd64.tar.gz
+
+// Unzip the contents
+
+tar xvfz node_exporter-1.0.1.linux-amd64.tar.gz
+
+// Go to the desired directory
+
+cd node_exporter-1.0.1.linux-amd64
+
+// Run the node exporter
+
+./node_exporter
+
+// Endpoint will be exposed on port 9100

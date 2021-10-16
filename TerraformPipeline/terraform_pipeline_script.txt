@@ -1,0 +1,9 @@
+az storage account create -g newgrp1 -n terraform123 -l centralus --sku Standard_LRS
+
+az storage container create --name terraform --account-name terraform123 
+
+az storage account keys list -g newgrp1 --account-name terraform123 --query "[0].value" --output tsv > temp.txt
+
+$content = Get-Content temp.txt -First 1
+
+$key = '"{0}"' -f $content

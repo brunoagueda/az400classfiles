@@ -1,0 +1,3 @@
+az vm create --resource-group classdemo --name demovm --image win2019datacenter --admin-username demouser --admin-password AzurePortal@123
+
+az vm create --resource-group classdemo --name demovm --image win2019datacenter --admin-username demouser --admin-password $(vmpassword)

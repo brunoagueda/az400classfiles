@@ -1,0 +1,8 @@
+[
+{
+"name": "dbconnectionstring",
+"value": "$(SQL_ConnectionString)",
+"type": "SQLAzure",
+"slotSetting": false
+}
+]

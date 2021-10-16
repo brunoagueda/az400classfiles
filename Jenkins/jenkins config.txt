@@ -1,0 +1,7 @@
+#Build Windows batch command
+C:\nuget.exe restore {Home Directory path}\workspace\{nome do projeto no jenkins}\{nome da solução}.sln"
+
+service hook token: 117127e099998513f4278ef8947f9faf9d
+
+
+119d7ea07a856364d7f6e3746a0f7129b8

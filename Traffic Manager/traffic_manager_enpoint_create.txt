@@ -1,0 +1,4 @@
+$webid=az resource list --name 'stagingweb1000' --query [].id --output tsv
+$id = '"{0}"' -f $webid
+
+az network traffic-manager endpoint create -g newgrp1 --profile-name app-profile1000 -n endpoint-version2 --type azureEndpoints --target-resource-id $id --endpoint-status enabled --priority 2

@@ -1,0 +1,2 @@
+//Deploy the container group
+az container create --resource-group newgrp1 --name test -f app.yml

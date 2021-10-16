@@ -1,0 +1,1 @@
+az deployment group create --resource-group az400demo --template-file main.json --parameters parameters.json

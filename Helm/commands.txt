@@ -1,0 +1,33 @@
+//Working with Helm
+// First ensure you have an Azure Kubernetes clusters in place
+
+// Set the context to your Kubernetes cluster
+
+az aks get-credentials --resource-group az400demo --name cluster
+
+// Ensure the helm client can fetch the pre-configured helm charts
+
+helm repo add stable https://charts.helm.sh/stable/
+
+// To see the pre-created charts or packages
+
+helm search repo stable
+
+// Install the mysql chart
+
+helm install app-sql stable/mysql
+
+
+
+
+################################################
+
+//Creating Helm Charts
+// Set the context to your Kubernetes cluster
+az aks get-credentials --resource-group az400demo --name cluster
+
+//Create Chart named as app-helm
+helm create app-helm
+
+//Install new Chart
+helm install app-version1 app-helm

@@ -1,0 +1,27 @@
+// Installing the pre-requisites for installing the docker engine
+
+sudo apt update
+
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+
+sudo apt update
+
+// Installing the docker engine
+
+sudo apt install docker-ce
+
+// Pulling the nginx image from Docker Hub
+
+sudo docker pull nginx
+
+// Seeing the images on the local system
+
+sudo docker images
+
+// Running the nginx image as a container
+
+sudo docker run --name sampleapp -p 80:80 -d nginx

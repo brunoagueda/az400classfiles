@@ -1,0 +1,11 @@
+// This is for publishing your .Net Core application from command prompt
+
+dotnet publish
+
+// This is for building your docker image
+
+sudo docker build -t dotnetapp .
+
+// This is for running your custom image as a container
+
+sudo docker run -d -p 80:80 dotnetapp

@@ -1,0 +1,2 @@
+//Create deployment slots
+az webapp deployment slot create --name web_app_name --resource-group rg_name --slot staging
