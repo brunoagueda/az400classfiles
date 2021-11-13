@@ -8,13 +8,13 @@
         "adminPassword": {
           "reference": {
             "keyVault": {
-            "id": "/subscriptions/bac07c89-b922-4896-882f-359d1cfd5058/resourceGroups/classdemo/providers/Microsoft.KeyVault/vaults/az400keyvault"
+            "id": "/subscriptions/f872faed-4f62-4087-b45b-2ce087af0f62/resourceGroups/az400demo/providers/Microsoft.KeyVault/vaults/vault1234demo"
             },
             "secretName": "Pwd"
           }
         },
         "dnsLabelPrefix": {
-			"value": "staticvm123456"
+			"value": "staticvmsadaujg"
 		}
       }
   }

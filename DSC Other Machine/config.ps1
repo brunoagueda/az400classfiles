@@ -89,9 +89,9 @@ Configuration DscMetaConfigs
  # NOTE: DSC Node Configuration names are case sensitive in the portal.
  # TODO: edit the below as needed for your use case
 $Params = @{
-     RegistrationUrl = 'https://7c8cdc01-2b93-4be6-92b1-cceb47919f24.agentsvc.brs.azure-automation.net/accounts/7c8cdc01-2b93-4be6-92b1-cceb47919f24';
-     RegistrationKey = 'nS00dfqk/ld1xC7RuolitxNX4BwHENoHpL7ULa67ykRMFBDNbR/5GJc0N4ArLJu75enuiTT+iWcW1UiflTFj7w==';
-     ComputerName = @('othervm');
+     RegistrationUrl = 'https://86577507-3fa0-4bd0-bf31-c212e05f791f.agentsvc.brs.azure-automation.net/accounts/86577507-3fa0-4bd0-bf31-c212e05f791f';
+     RegistrationKey = 'v8EGqcQykU5Cu3byLds3f37dehqNXPgzRb00Jc3bvdBN/DS9pHuWfdVciDpXut6IbkwYBHtJlUEG59wEEu8fVw==';
+     ComputerName = @('otherVM');
      NodeConfigurationName = 'NewConfig2.AllNodes';
      RefreshFrequencyMins = 30;
      ConfigurationModeFrequencyMins = 15;

@@ -5,7 +5,7 @@ variable "storage_account_name" {
  
 variable "resource_group_name" {
     type=string
-    default="terraform_grp2"
+    default="terraform_grp"
 }
  
 terraform {

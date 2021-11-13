@@ -31,12 +31,12 @@ resource "azurerm_virtual_network" "staging" {
   name                = var.network_name
   address_space       = ["10.0.0.0/16"]
   location            = "Brazil South"
-  resource_group_name = "terraform_grp2"
+  resource_group_name = "terraform_grp"
 }
  
 resource "azurerm_subnet" "default" {
   name                 = "default"
-  resource_group_name  = "terraform_grp2"
+  resource_group_name  = "terraform_grp"
   virtual_network_name = azurerm_virtual_network.staging.name
   address_prefix     = "10.0.0.0/24"
 }
@@ -44,7 +44,7 @@ resource "azurerm_subnet" "default" {
 resource "azurerm_network_interface" "interface" {
   name                = "default-interface"
   location            = "Brazil South"
-  resource_group_name = "terraform_grp2"
+  resource_group_name = "terraform_grp"
  
   ip_configuration {
     name                          = "interfaceconfiguration"
@@ -56,7 +56,7 @@ resource "azurerm_network_interface" "interface" {
 resource "azurerm_virtual_machine" "vm" {
   name                  = var.vm_name
   location              = "Brazil South"
-  resource_group_name   = "terraform_grp2"
+  resource_group_name   = "terraform_grp"
   network_interface_ids = [azurerm_network_interface.interface.id]
   vm_size               = "Standard_DS1_v2"
  

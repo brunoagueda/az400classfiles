@@ -11,15 +11,15 @@
         },
         "vaultName": {
           "type": "string",
-          "defaultValue":"demoappvaultaz400"
+          "defaultValue":"vault12345demo"
           },
           "secretName": {
           "type": "string",
-          "defaultValue":"ServerPwd"
+          "defaultValue":"Pwd"
         },
         "vaultResourceGroupName": {
           "type": "string",
-          "defaultValue":"az400demo"
+          "defaultValue":"az400demous"
         },
         "vaultSubscription": {
           "type": "string",

@@ -28,12 +28,12 @@ provider "azurerm"{
 }
  
 data "azurerm_key_vault" "keyvault" {
-  name                = "demoappvaultaz400"
+  name                = "vault1234demo"
   resource_group_name = "az400demo"
 }
  
 data "azurerm_key_vault_secret" "vmsecret" {
-  name         = "ServerPwd"
+  name         = "Pwd"
   key_vault_id = data.azurerm_key_vault.keyvault.id
 }
  
@@ -41,20 +41,20 @@ resource "azurerm_virtual_network" "staging" {
   name                = var.network_name
   address_space       = ["10.0.0.0/16"]
   location            = "Brazil South"
-  resource_group_name = "terraform_grp2"
+  resource_group_name = "terraform_grp1"
 }
  
 resource "azurerm_subnet" "default" {
   name                 = "default"
-  resource_group_name  = "terraform_grp2"
+  resource_group_name  = "terraform_grp1"
   virtual_network_name = azurerm_virtual_network.staging.name
   address_prefix     = "10.0.0.0/24"
 }
  
 resource "azurerm_network_interface" "interface" {
-  name                = "default-interface"
+  name                = "default-interface1"
   location            = "Brazil South"
-  resource_group_name = "terraform_grp2"
+  resource_group_name = "terraform_grp1"
  
   ip_configuration {
     name                          = "interfaceconfiguration"
@@ -66,7 +66,7 @@ resource "azurerm_network_interface" "interface" {
 resource "azurerm_virtual_machine" "vm" {
   name                  = var.vm_name
   location              = "Brazil South"
-  resource_group_name   = "terraform_grp2"
+  resource_group_name   = "terraform_grp1"
   network_interface_ids = [azurerm_network_interface.interface.id]
   vm_size               = "Standard_DS1_v2"
  

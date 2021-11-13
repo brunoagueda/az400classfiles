@@ -229,7 +229,7 @@
       "typeHandlerVersion": "1.7",
       "autoUpgradeMinorVersion":true,
       "settings": {
-        "fileUris": ["https://zcp5opvvbbrjisawinvm.blob.core.windows.net/script/install.ps1"],
+        "fileUris": ["https://storageaz400demo1.blob.core.windows.net/scriptdsc/install.ps1"],
         "commandToExecute": "powershell.exe -ExecutionPolicy Unrestricted -File install.ps1"
       }
   }
