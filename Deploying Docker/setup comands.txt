@@ -25,3 +25,11 @@ sudo docker images
 // Running the nginx image as a container
 
 sudo docker run --name sampleapp -p 80:80 -d nginx
+
+// List Containers
+
+sudo docker ps
+
+// Stop containers
+
+sudo docker container stop <container ID>
